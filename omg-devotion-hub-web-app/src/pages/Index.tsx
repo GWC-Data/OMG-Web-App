@@ -21,10 +21,11 @@ import {
   Star,
   Users,
   Globe,
-  Smartphone
+  Smartphone,
 } from "lucide-react";
 import heroImage from "@/assets/hero-ganesha.jpg";
-import omSymbol from "@/assets/om-symbol.png";
+// import omSymbol from "@/assets/om-symbol.png";
+import siteLogo from "@/assets/site-logo.png";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,9 +33,21 @@ const Index = () => {
   const [showNotification, setShowNotification] = useState(true);
 
   const notifications = [
-    { icon: Bell, text: "🕉️ Today's Auspicious Time: 6:00 AM - 7:30 AM", color: "from-primary to-secondary" },
-    { icon: Star, text: "✨ New: AI-powered Kundali matching now available!", color: "from-secondary to-accent" },
-    { icon: Heart, text: "🙏 Join 50,000+ devotees on their spiritual journey", color: "from-accent to-divine-purple" },
+    {
+      icon: Bell,
+      text: "🕉️ Today's Auspicious Time: 6:00 AM - 7:30 AM",
+      color: "from-primary to-secondary",
+    },
+    {
+      icon: Star,
+      text: "✨ New: AI-powered Kundali matching now available!",
+      color: "from-secondary to-accent",
+    },
+    {
+      icon: Heart,
+      text: "🙏 Join 50,000+ devotees on their spiritual journey",
+      color: "from-accent to-divine-purple",
+    },
   ];
 
   useEffect(() => {
@@ -48,37 +61,43 @@ const Index = () => {
     {
       icon: Store,
       title: "Divine Store",
-      description: "Sacred items, rudraksha beads, and spiritual merchandise delivered to your doorstep",
+      description:
+        "Sacred items, rudraksha beads, and spiritual merchandise delivered to your doorstep",
       gradient: "from-primary to-secondary",
     },
     {
       icon: MapPin,
       title: "Temple Locator",
-      description: "Find nearby temples with routes, timings, and live darshan availability",
+      description:
+        "Find nearby temples with routes, timings, and live darshan availability",
       gradient: "from-secondary to-accent",
     },
     {
       icon: BookOpen,
       title: "Sacred Knowledge",
-      description: "Complete history, mythology, and information about 10,000+ temples",
+      description:
+        "Complete history, mythology, and information about 10,000+ temples",
       gradient: "from-accent to-divine-crimson",
     },
     {
       icon: Calendar,
       title: "Personalized Pooja",
-      description: "AI-recommended rituals based on your birth chart and planetary positions",
+      description:
+        "AI-recommended rituals based on your birth chart and planetary positions",
       gradient: "from-primary to-divine-purple",
     },
     {
       icon: Music,
       title: "Divine Music",
-      description: "Curated devotional songs, mantras, and meditation sounds for your deity",
+      description:
+        "Curated devotional songs, mantras, and meditation sounds for your deity",
       gradient: "from-divine-orange to-primary",
     },
     {
       icon: MessageCircle,
       title: "AI Spiritual Guide",
-      description: "24/7 guidance on rituals, mantras, and spiritual queries in your language",
+      description:
+        "24/7 guidance on rituals, mantras, and spiritual queries in your language",
       gradient: "from-divine-purple to-accent",
     },
   ];
@@ -136,21 +155,21 @@ const Index = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   const floatingVariants = {
     animate: {
       y: [-10, 10, -10],
       rotate: [0, 5, -5, 0],
-      transition: { duration: 6, repeat: Infinity }
-    }
+      transition: { duration: 6, repeat: Infinity },
+    },
   };
 
   const DetailRow = ({
@@ -177,7 +196,9 @@ const Index = () => {
             exit={{ y: -50, opacity: 0 }}
             className="fixed top-0 left-0 right-0 z-[60] safe-top"
           >
-            <div className={`bg-gradient-to-r ${notifications[currentNotification].color} py-2 px-4`}>
+            <div
+              className={`bg-gradient-to-r ${notifications[currentNotification].color} py-2 px-4`}
+            >
               <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <motion.div
                   key={currentNotification}
@@ -202,7 +223,11 @@ const Index = () => {
       </AnimatePresence>
 
       {/* Navigation */}
-      <nav className={`fixed ${showNotification ? 'top-10' : 'top-0'} w-full bg-background/95 backdrop-blur-md z-50 border-b border-border/50 transition-all duration-300`}>
+      <nav
+        className={`fixed ${
+          showNotification ? "top-10" : "top-0"
+        } w-full bg-background/95 backdrop-blur-md z-50 border-b border-border/50 transition-all duration-300`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div
@@ -210,8 +235,14 @@ const Index = () => {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3"
             >
-              <img src={omSymbol} alt="OM" className="h-10 w-10 animate-pulse-soft" />
-              <span className="text-2xl font-bold text-gradient-divine">OMG</span>
+              <img
+                src={siteLogo}
+                alt="OM"
+                className="h-10 w-10 animate-pulse-soft"
+              />
+              <span className="text-2xl font-bold text-gradient-divine">
+                OMG
+              </span>
             </motion.div>
 
             <div className="hidden md:flex items-center gap-6">
@@ -229,12 +260,18 @@ const Index = () => {
                 >
                   {item.href.startsWith("/") ? (
                     <Link to={item.href}>
-                      <Button variant="ghost" className="text-foreground hover:text-primary hover:bg-primary/10 transition-all">
+                      <Button
+                        variant="ghost"
+                        className="text-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                      >
                         {item.name}
                       </Button>
                     </Link>
                   ) : (
-                    <Button variant="ghost" className="text-foreground hover:text-primary hover:bg-primary/10 transition-all">
+                    <Button
+                      variant="ghost"
+                      className="text-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                    >
                       {item.name}
                     </Button>
                   )}
@@ -275,15 +312,23 @@ const Index = () => {
                   { name: "Temples", href: "/temples" },
                   { name: "Store", href: "/store" },
                   { name: "Features", href: "#features" },
-                ].map((item) => (
+                ].map((item) =>
                   item.href.startsWith("/") ? (
                     <Link key={item.name} to={item.href}>
-                      <Button variant="ghost" className="w-full justify-start">{item.name}</Button>
+                      <Button variant="ghost" className="w-full justify-start">
+                        {item.name}
+                      </Button>
                     </Link>
                   ) : (
-                    <Button key={item.name} variant="ghost" className="w-full justify-start">{item.name}</Button>
+                    <Button
+                      key={item.name}
+                      variant="ghost"
+                      className="w-full justify-start"
+                    >
+                      {item.name}
+                    </Button>
                   )
-                ))}
+                )}
                 <Button className="w-full bg-gradient-to-r from-primary to-secondary">
                   Download App
                 </Button>
@@ -294,7 +339,11 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className={`relative ${showNotification ? 'pt-32' : 'pt-24'} pb-12 md:pt-40 md:pb-20 overflow-hidden transition-all duration-300`}>
+      <section
+        className={`relative ${
+          showNotification ? "pt-32" : "pt-24"
+        } pb-12 md:pt-40 md:pb-20 overflow-hidden transition-all duration-300`}
+      >
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-celestial" />
@@ -318,12 +367,18 @@ const Index = () => {
             className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16"
           >
             <div className="flex-1 text-center lg:text-left space-y-6">
-              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 text-sm text-primary font-medium">
+              <motion.div
+                variants={itemVariants}
+                className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 text-sm text-primary font-medium"
+              >
                 <Sparkles className="w-4 h-4" />
                 <span>AI-Powered Spiritual Companion</span>
               </motion.div>
 
-              <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <motion.h1
+                variants={itemVariants}
+                className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              >
                 Your Divine Journey
                 <motion.span
                   className="block text-gradient-divine"
@@ -334,13 +389,20 @@ const Index = () => {
                 </motion.span>
               </motion.h1>
 
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground max-w-2xl">
-                Experience spirituality like never before. Connect with temples, discover sacred rituals,
-                and embark on a personalized devotional journey powered by ancient wisdom and modern AI.
+              <motion.p
+                variants={itemVariants}
+                className="text-lg md:text-xl text-muted-foreground max-w-2xl"
+              >
+                Experience spirituality like never before. Connect with temples,
+                discover sacred rituals, and embark on a personalized devotional
+                journey powered by ancient wisdom and modern AI.
               </motion.p>
 
               {/* App Store Buttons */}
-              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              >
                 <Button
                   size="lg"
                   className="bg-foreground text-background hover:bg-foreground/90 rounded-xl h-14 px-6 gap-3 shadow-xl"
@@ -350,7 +412,9 @@ const Index = () => {
                   </svg>
                   <div className="text-left">
                     <div className="text-xs opacity-80">Download on the</div>
-                    <div className="text-base font-semibold -mt-0.5">App Store</div>
+                    <div className="text-base font-semibold -mt-0.5">
+                      App Store
+                    </div>
                   </div>
                 </Button>
                 <Button
@@ -362,26 +426,32 @@ const Index = () => {
                   </svg>
                   <div className="text-left">
                     <div className="text-xs opacity-80">Get it on</div>
-                    <div className="text-base font-semibold -mt-0.5">Google Play</div>
+                    <div className="text-base font-semibold -mt-0.5">
+                      Google Play
+                    </div>
                   </div>
                 </Button>
               </motion.div>
 
               {/* Stats */}
-              <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6 justify-center lg:justify-start pt-4">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-wrap items-center gap-6 justify-center lg:justify-start pt-4"
+              >
                 {stats.slice(0, 3).map((stat, i) => (
                   <div key={i} className="text-center">
-                    <div className="text-2xl md:text-3xl font-bold text-gradient-divine">{stat.value}</div>
-                    <div className="text-xs text-muted-foreground">{stat.label}</div>
+                    <div className="text-2xl md:text-3xl font-bold text-gradient-divine">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
               </motion.div>
             </div>
 
-            <motion.div
-              variants={itemVariants}
-              className="flex-1 relative"
-            >
+            <motion.div variants={itemVariants} className="flex-1 relative">
               <motion.div
                 variants={floatingVariants}
                 animate="animate"
@@ -412,7 +482,9 @@ const Index = () => {
                           </div>
                           <div className="text-xs">
                             <div className="font-semibold">Pooja Reminder</div>
-                            <div className="text-muted-foreground">Ganesh Chaturthi at 5PM</div>
+                            <div className="text-muted-foreground">
+                              Ganesh Chaturthi at 5PM
+                            </div>
                           </div>
                         </div>
                       </motion.div>
@@ -429,7 +501,9 @@ const Index = () => {
                           </div>
                           <div className="text-xs">
                             <div className="font-semibold">Nearest Temple</div>
-                            <div className="text-muted-foreground">0.5 km away</div>
+                            <div className="text-muted-foreground">
+                              0.5 km away
+                            </div>
                           </div>
                         </div>
                       </motion.div>
@@ -457,7 +531,6 @@ const Index = () => {
       {/* <section className="py-24 bg-[#FFF7ED] relative overflow-hidden"> */}
       <div className="py-28 bg-gradient-to-b from-[#FFF7ED] to-white">
         <div className="container mx-auto px-4">
-
           {/* Heading */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-5">
@@ -465,17 +538,17 @@ const Index = () => {
             </h2>
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              OMG will debut with <strong>Maha Yaagam 1.0</strong>, the longest continual
-              spiritual event on the planet, marking a historic moment in modern
-              spiritual experiences.
+              OMG will debut with <strong>Maha Yaagam 1.0</strong>, the longest
+              continual spiritual event on the planet, marking a historic moment
+              in modern spiritual experiences.
             </p>
           </div>
 
           {/* Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-
             {/* Event Details Card */}
-            <div className="
+            <div
+              className="
         relative
         bg-white/80 backdrop-blur
         rounded-3xl
@@ -483,8 +556,8 @@ const Index = () => {
         border border-orange-100
         shadow-[0_20px_60px_-20px_rgba(0,0,0,0.08)]
         space-y-8
-      ">
-
+      "
+            >
               <div className="absolute left-0 top-10 h-24 w-1 bg-gradient-to-b from-orange-400 to-orange-200 rounded-full" />
 
               <DetailRow label="Dates">
@@ -497,7 +570,9 @@ const Index = () => {
               </DetailRow>
 
               <DetailRow label="Duration">
-                <span className="font-semibold text-gray-900">34 hours non-stop</span>
+                <span className="font-semibold text-gray-900">
+                  34 hours non-stop
+                </span>
                 <div className="text-sm text-gray-500 mt-1">
                   Feb 15, 8:00 AM – Feb 16, 6:00 PM
                 </div>
@@ -517,14 +592,15 @@ const Index = () => {
             </div>
 
             {/* Highlights Card */}
-            <div className="
+            <div
+              className="
         bg-gradient-to-br from-orange-50 via-white to-white
         rounded-3xl
         p-10
         border border-orange-100
         shadow-[0_20px_60px_-20px_rgba(0,0,0,0.06)]
-      ">
-
+      "
+            >
               <h3 className="text-2xl font-semibold text-gray-900 mb-8">
                 Event Highlights
               </h3>
@@ -555,11 +631,9 @@ const Index = () => {
                 </li>
               </ul>
             </div>
-
           </div>
         </div>
       </div>
-
 
       {/* Why Use This App Section */}
       <section className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
@@ -584,10 +658,13 @@ const Index = () => {
             </span>
             <h2 className="text-3xl md:text-5xl font-bold">
               Transform Your
-              <span className="block text-gradient-divine">Spiritual Experience</span>
+              <span className="block text-gradient-divine">
+                Spiritual Experience
+              </span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We blend ancient wisdom with modern technology to create a seamless devotional journey
+              We blend ancient wisdom with modern technology to create a
+              seamless devotional journey
             </p>
           </motion.div>
 
@@ -641,7 +718,6 @@ const Index = () => {
           </div>
         </div>
         {/* </section> */}
-
       </section>
 
       {/* Features Grid */}
@@ -662,7 +738,8 @@ const Index = () => {
               <span className="block text-gradient-divine">Sacred Journey</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A complete ecosystem designed to enhance every aspect of your spiritual life
+              A complete ecosystem designed to enhance every aspect of your
+              spiritual life
             </p>
           </motion.div>
 
@@ -732,12 +809,15 @@ const Index = () => {
               </span>
               <h2 className="text-3xl md:text-5xl font-bold leading-tight">
                 Unlock the Path to
-                <span className="block text-gradient-divine">Spiritual Awakening</span>
+                <span className="block text-gradient-divine">
+                  Spiritual Awakening
+                </span>
               </h2>
               <p className="text-lg text-muted-foreground">
-                OMG is more than an app – it's your personal gateway to divine experiences.
-                We understand that spirituality is deeply personal, which is why every feature
-                is designed to adapt to your unique spiritual journey.
+                OMG is more than an app – it's your personal gateway to divine
+                experiences. We understand that spirituality is deeply personal,
+                which is why every feature is designed to adapt to your unique
+                spiritual journey.
               </p>
 
               <div className="space-y-4 pt-4">
@@ -745,7 +825,7 @@ const Index = () => {
                   "Personalized deity recommendations based on your birth chart",
                   "Daily mantras and rituals curated just for you",
                   "Connect with authentic pandits for online ceremonies",
-                  "Track your spiritual progress and milestone achievements"
+                  "Track your spiritual progress and milestone achievements",
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -756,8 +836,18 @@ const Index = () => {
                     className="flex items-center gap-3"
                   >
                     <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0">
-                      <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      <svg
+                        className="w-3 h-3 text-primary-foreground"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={3}
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                     </div>
                     <span className="text-foreground">{item}</span>
@@ -769,7 +859,10 @@ const Index = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-lg mt-4 shadow-xl">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-lg mt-4 shadow-xl"
+                >
                   Begin Your Journey
                   <ChevronRight className="w-5 h-5 ml-2" />
                 </Button>
@@ -785,7 +878,11 @@ const Index = () => {
               <div className="relative">
                 <motion.div
                   animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                  transition={{
+                    duration: 60,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
                   className="absolute inset-0 rounded-3xl border-2 border-dashed border-primary/30"
                 />
                 <div className="grid grid-cols-2 gap-4 p-8">
@@ -795,8 +892,12 @@ const Index = () => {
                       whileHover={{ scale: 1.05, y: -5 }}
                       className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-xl border border-border hover:border-primary/50 transition-all"
                     >
-                      <div className="text-3xl md:text-4xl font-bold text-gradient-divine mb-1">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                      <div className="text-3xl md:text-4xl font-bold text-gradient-divine mb-1">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {stat.label}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -824,7 +925,7 @@ const Index = () => {
 
               <div className="relative p-8 md:p-12 text-center space-y-6">
                 <motion.img
-                  src={omSymbol}
+                  src={siteLogo}
                   alt="Om"
                   className="w-20 h-20 mx-auto"
                   animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
@@ -836,7 +937,8 @@ const Index = () => {
                 </h2>
 
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Download OMG now and join thousands of devotees experiencing spirituality in a whole new way
+                  Download OMG now and join thousands of devotees experiencing
+                  spirituality in a whole new way
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -849,7 +951,9 @@ const Index = () => {
                     </svg>
                     <div className="text-left">
                       <div className="text-xs opacity-80">Download on the</div>
-                      <div className="text-base font-semibold -mt-0.5">App Store</div>
+                      <div className="text-base font-semibold -mt-0.5">
+                        App Store
+                      </div>
                     </div>
                   </Button>
                   <Button
@@ -861,7 +965,9 @@ const Index = () => {
                     </svg>
                     <div className="text-left">
                       <div className="text-xs opacity-80">Get it on</div>
-                      <div className="text-base font-semibold -mt-0.5">Google Play</div>
+                      <div className="text-base font-semibold -mt-0.5">
+                        Google Play
+                      </div>
                     </div>
                   </Button>
                 </div>
@@ -888,19 +994,26 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2 space-y-4">
               <div className="flex items-center gap-3">
-                <img src={omSymbol} alt="OM" className="h-10 w-10" />
-                <span className="text-2xl font-bold text-gradient-divine">OMG</span>
+                <img src={siteLogo} alt="OM" className="h-10 w-10" />
+                <span className="text-2xl font-bold text-gradient-divine">
+                  OMG
+                </span>
               </div>
               <p className="text-muted-foreground max-w-sm">
-                Your AI-powered spiritual companion. Experience divine connections, discover sacred temples,
-                and embark on a personalized devotional journey.
+                Your AI-powered spiritual companion. Experience divine
+                connections, discover sacred temples, and embark on a
+                personalized devotional journey.
               </p>
               <div className="flex gap-3">
                 <Button size="sm" variant="outline" className="rounded-full">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" /></svg>
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+                  </svg>
                 </Button>
                 <Button size="sm" variant="outline" className="rounded-full">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" /></svg>
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
+                  </svg>
                 </Button>
               </div>
             </div>
@@ -908,20 +1021,36 @@ const Index = () => {
             <div className="space-y-4">
               <h4 className="font-semibold">Features</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <p className="hover:text-primary cursor-pointer transition-colors">Temple Locator</p>
-                <p className="hover:text-primary cursor-pointer transition-colors">Divine Store</p>
-                <p className="hover:text-primary cursor-pointer transition-colors">AI Guide</p>
-                <p className="hover:text-primary cursor-pointer transition-colors">Pooja Booking</p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  Temple Locator
+                </p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  Divine Store
+                </p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  AI Guide
+                </p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  Pooja Booking
+                </p>
               </div>
             </div>
 
             <div className="space-y-4">
               <h4 className="font-semibold">Company</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <p className="hover:text-primary cursor-pointer transition-colors">About Us</p>
-                <p className="hover:text-primary cursor-pointer transition-colors">Privacy Policy</p>
-                <p className="hover:text-primary cursor-pointer transition-colors">Terms of Service</p>
-                <p className="hover:text-primary cursor-pointer transition-colors">Contact</p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  About Us
+                </p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  Privacy Policy
+                </p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  Terms of Service
+                </p>
+                <p className="hover:text-primary cursor-pointer transition-colors">
+                  Contact
+                </p>
               </div>
             </div>
           </div>
