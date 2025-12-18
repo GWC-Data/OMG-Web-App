@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
+import {
+  ArrowLeft,
   Calendar,
   Bell,
   Sun,
@@ -11,13 +11,14 @@ import {
   Clock,
   ChevronRight,
   Sparkles,
-  Heart
+  Heart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import omSymbol from "@/assets/om-symbol.png";
+// import omSymbol from "@/assets/om-symbol.png";
+import siteLogo from "@/assets/site-logo.png";
 
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -83,8 +84,18 @@ const upcomingFestivals = [
 
 const personalDeities = [
   { name: "Lord Shiva", icon: "🔱", day: "Monday", mantra: "Om Namah Shivaya" },
-  { name: "Lord Ganesha", icon: "🕉️", day: "Wednesday", mantra: "Om Gan Ganapataye Namah" },
-  { name: "Goddess Lakshmi", icon: "🪷", day: "Friday", mantra: "Om Shreem Mahalakshmiyei Namah" },
+  {
+    name: "Lord Ganesha",
+    icon: "🕉️",
+    day: "Wednesday",
+    mantra: "Om Gan Ganapataye Namah",
+  },
+  {
+    name: "Goddess Lakshmi",
+    icon: "🪷",
+    day: "Friday",
+    mantra: "Om Shreem Mahalakshmiyei Namah",
+  },
 ];
 
 const PersonalizedPooja = () => {
@@ -110,8 +121,10 @@ const PersonalizedPooja = () => {
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               </Link>
-              <img src={omSymbol} alt="OM" className="h-8 w-8" />
-              <h1 className="text-xl font-bold text-gradient-divine">Pooja Calendar</h1>
+              <img src={siteLogo} alt="OMG logo" className="h-8 w-8" />
+              <h1 className="text-xl font-bold text-gradient-divine">
+                Pooja Calendar
+              </h1>
             </div>
             <div className="flex items-center gap-2">
               <Bell className="w-4 h-4 text-muted-foreground" />
@@ -129,7 +142,8 @@ const PersonalizedPooja = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between">
             {dates.map((date, index) => {
-              const isToday = date.toDateString() === currentDate.toDateString();
+              const isToday =
+                date.toDateString() === currentDate.toDateString();
               const isSelected = index === selectedDay;
               return (
                 <motion.button
@@ -144,7 +158,9 @@ const PersonalizedPooja = () => {
                       : ""
                   }`}
                 >
-                  <span className="text-xs font-medium opacity-70">{weekDays[index]}</span>
+                  <span className="text-xs font-medium opacity-70">
+                    {weekDays[index]}
+                  </span>
                   <span className="text-lg font-bold">{date.getDate()}</span>
                   {isToday && !isSelected && (
                     <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1" />
@@ -173,23 +189,33 @@ const PersonalizedPooja = () => {
               >
                 <Card className={`p-4 ${pooja.completed ? "opacity-60" : ""}`}>
                   <div className="flex items-start gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${
-                      pooja.completed 
-                        ? "bg-muted" 
-                        : "bg-gradient-to-br from-primary/20 to-secondary/20"
-                    }`}>
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${
+                        pooja.completed
+                          ? "bg-muted"
+                          : "bg-gradient-to-br from-primary/20 to-secondary/20"
+                      }`}
+                    >
                       {pooja.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className={`font-semibold ${pooja.completed ? "line-through" : ""}`}>
+                        <h3
+                          className={`font-semibold ${
+                            pooja.completed ? "line-through" : ""
+                          }`}
+                        >
                           {pooja.name}
                         </h3>
                         {pooja.completed && (
-                          <Badge variant="secondary" className="text-xs">Done</Badge>
+                          <Badge variant="secondary" className="text-xs">
+                            Done
+                          </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-muted-foreground mb-2">{pooja.description}</p>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        {pooja.description}
+                      </p>
                       <div className="flex items-center gap-4 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
@@ -262,11 +288,17 @@ const PersonalizedPooja = () => {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold">{festival.name}</h3>
-                      <p className="text-sm text-muted-foreground">{festival.deity}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {festival.deity}
+                      </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-semibold text-primary">{festival.date}</p>
-                      <p className="text-xs text-muted-foreground">{festival.daysLeft} days left</p>
+                      <p className="font-semibold text-primary">
+                        {festival.date}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {festival.daysLeft} days left
+                      </p>
                     </div>
                     <ChevronRight className="w-5 h-5 text-muted-foreground" />
                   </div>

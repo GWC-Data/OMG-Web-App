@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
-  Search, 
+import {
+  ArrowLeft,
+  Search,
   Filter,
   MapPin,
   List,
   Map as MapIcon,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TempleCard } from "@/components/temples/TempleCard";
 import { MapPlaceholder } from "@/components/temples/MapPlaceholder";
 import { temples, Temple } from "@/data/temples";
-import omSymbol from "@/assets/om-symbol.png";
+// import omSymbol from "@/assets/om-symbol.png";
+import siteLogo from "@/assets/site-logo.png";
 import { toast } from "@/hooks/use-toast";
 
 const TempleLocator = () => {
@@ -25,14 +26,14 @@ const TempleLocator = () => {
   const [filterStatus, setFilterStatus] = useState<string>("all");
 
   const filteredTemples = temples.filter((temple) => {
-    const matchesSearch = 
+    const matchesSearch =
       temple.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       temple.deity.toLowerCase().includes(searchQuery.toLowerCase()) ||
       temple.address.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesFilter = 
+
+    const matchesFilter =
       filterStatus === "all" || temple.darshanStatus === filterStatus;
-    
+
     return matchesSearch && matchesFilter;
   });
 
@@ -62,15 +63,21 @@ const TempleLocator = () => {
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               </Link>
-              <img src={omSymbol} alt="OM" className="h-8 w-8" />
-              <h1 className="text-xl font-bold text-gradient-divine">Temple Locator</h1>
+              <img src={siteLogo} alt="OMG logo" className="h-8 w-8" />
+              <h1 className="text-xl font-bold text-gradient-divine">
+                Temple Locator
+              </h1>
             </div>
             <div className="flex items-center gap-2">
               <Button
                 variant={viewMode === "list" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setViewMode("list")}
-                className={viewMode === "list" ? "bg-gradient-to-r from-primary to-secondary border-0" : ""}
+                className={
+                  viewMode === "list"
+                    ? "bg-gradient-to-r from-primary to-secondary border-0"
+                    : ""
+                }
               >
                 <List className="w-4 h-4" />
               </Button>
@@ -78,7 +85,11 @@ const TempleLocator = () => {
                 variant={viewMode === "map" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setViewMode("map")}
-                className={viewMode === "map" ? "bg-gradient-to-r from-primary to-secondary border-0" : ""}
+                className={
+                  viewMode === "map"
+                    ? "bg-gradient-to-r from-primary to-secondary border-0"
+                    : ""
+                }
               >
                 <MapIcon className="w-4 h-4" />
               </Button>
@@ -146,10 +157,16 @@ const TempleLocator = () => {
             <div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">Live Darshan Status</span>
+                <span className="text-sm font-medium text-primary">
+                  Live Darshan Status
+                </span>
               </div>
               <p className="text-sm text-muted-foreground">
-                {filteredTemples.filter(t => t.darshanStatus === "available").length} temples with darshan available nearby
+                {
+                  filteredTemples.filter((t) => t.darshanStatus === "available")
+                    .length
+                }{" "}
+                temples with darshan available nearby
               </p>
             </div>
           </motion.div>
@@ -160,7 +177,11 @@ const TempleLocator = () => {
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Temple List */}
-          <div className={`space-y-4 ${viewMode === "map" ? "hidden lg:block" : ""}`}>
+          <div
+            className={`space-y-4 ${
+              viewMode === "map" ? "hidden lg:block" : ""
+            }`}
+          >
             <div className="flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
                 {filteredTemples.length} temples found
@@ -170,14 +191,16 @@ const TempleLocator = () => {
                 Near Me
               </Button>
             </div>
-            
+
             {filteredTemples.length === 0 ? (
               <div className="text-center py-16">
                 <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                   <Search className="w-12 h-12 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">No temples found</h3>
-                <p className="text-muted-foreground">Try adjusting your search</p>
+                <p className="text-muted-foreground">
+                  Try adjusting your search
+                </p>
               </div>
             ) : (
               <motion.div

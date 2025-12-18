@@ -8,82 +8,100 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 28 100% 98%;
-    --foreground: 15 25% 15%;
+    /* Brand colors derived from logo:
+       - Deep Blue:   #283088 → hsl(235 55% 35%)
+       - Sacred Red:  #e32c26 → hsl(2 77% 52%)
+       - Deep Navy:   #1f2433 → hsl(225 24% 16%)
+    */
+    --background: 220 40% 98%;
+    --foreground: 225 24% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 15 25% 15%;
+    --card-foreground: 225 24% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 15 25% 15%;
+    --popover-foreground: 225 24% 16%;
 
-    --primary: 24 100% 50%;
+    --primary: 235 55% 35%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 24 100% 65%;
+    --primary-glow: 235 80% 60%;
 
-    --secondary: 45 100% 51%;
-    --secondary-foreground: 15 25% 15%;
+    --secondary: 2 77% 52%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 28 30% 95%;
-    --muted-foreground: 15 10% 45%;
+    --muted: 220 20% 95%;
+    --muted-foreground: 225 10% 45%;
 
-    --accent: 340 75% 55%;
+    --accent: 2 85% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 28 20% 90%;
-    --input: 28 20% 90%;
-    --ring: 24 100% 50%;
+    --border: 220 18% 88%;
+    --input: 220 18% 88%;
+    --ring: 235 80% 60%;
 
     --radius: 1rem;
 
-    --divine-saffron: 24 100% 50%;
-    --divine-gold: 45 100% 51%;
-    --divine-deep-orange: 16 90% 48%;
-    --divine-crimson: 340 75% 55%;
-    --divine-purple: 280 50% 60%;
-    
-    --gradient-divine: linear-gradient(135deg, hsl(var(--divine-saffron)), hsl(var(--divine-gold)));
-    --gradient-sacred: linear-gradient(180deg, hsl(var(--divine-deep-orange)), hsl(var(--divine-crimson)));
-    --gradient-celestial: radial-gradient(circle at 50% 0%, hsl(var(--primary-glow) / 0.3), transparent 70%);
-    
+    /* Spiritual gradient palette remapped to new brand colors */
+    --divine-saffron: 235 55% 35%; /* deep blue */
+    --divine-gold: 235 80% 60%; /* bright blue glow */
+    --divine-deep-orange: 2 77% 52%; /* sacred red */
+    --divine-crimson: 2 80% 45%; /* deeper sacred red */
+    --divine-purple: 225 24% 30%; /* deep navy accent */
+
+    --gradient-divine: linear-gradient(
+      135deg,
+      hsl(var(--divine-saffron)),
+      hsl(var(--divine-gold))
+    );
+    --gradient-sacred: linear-gradient(
+      180deg,
+      hsl(var(--divine-deep-orange)),
+      hsl(var(--divine-crimson))
+    );
+    --gradient-celestial: radial-gradient(
+      circle at 50% 0%,
+      hsl(var(--primary-glow) / 0.3),
+      transparent 70%
+    );
+
     --shadow-divine: 0 10px 40px -10px hsl(var(--divine-saffron) / 0.4);
     --shadow-glow: 0 0 60px hsl(var(--primary-glow) / 0.5);
-    
+
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 15 35% 8%;
-    --foreground: 28 100% 95%;
+    --background: 225 24% 8%;
+    --foreground: 220 40% 96%;
 
-    --card: 15 30% 12%;
-    --card-foreground: 28 100% 95%;
+    --card: 225 24% 12%;
+    --card-foreground: 220 40% 96%;
 
-    --popover: 15 30% 12%;
-    --popover-foreground: 28 100% 95%;
+    --popover: 225 24% 12%;
+    --popover-foreground: 220 40% 96%;
 
-    --primary: 24 100% 50%;
+    --primary: 235 55% 45%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 24 100% 65%;
+    --primary-glow: 235 80% 65%;
 
-    --secondary: 45 100% 51%;
-    --secondary-foreground: 15 25% 15%;
+    --secondary: 2 77% 56%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 15 25% 18%;
-    --muted-foreground: 28 20% 65%;
+    --muted: 225 18% 18%;
+    --muted-foreground: 220 15% 70%;
 
-    --accent: 340 75% 55%;
+    --accent: 2 85% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 15 20% 20%;
-    --input: 15 20% 20%;
-    --ring: 24 100% 50%;
+    --border: 225 20% 22%;
+    --input: 225 20% 22%;
+    --ring: 235 80% 60%;
   }
 }
 
@@ -103,15 +121,15 @@ All colors MUST be HSL.
   .safe-top {
     padding-top: env(safe-area-inset-top);
   }
-  
+
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
-  
+
   .safe-left {
     padding-left: env(safe-area-inset-left);
   }
-  
+
   .safe-right {
     padding-right: env(safe-area-inset-right);
   }
@@ -125,7 +143,7 @@ All colors MUST be HSL.
   .glow-divine {
     box-shadow: var(--shadow-glow);
   }
-  
+
   .text-gradient-divine {
     @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
   }
@@ -151,7 +169,8 @@ All colors MUST be HSL.
   }
 
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {
@@ -160,7 +179,8 @@ All colors MUST be HSL.
   }
 
   @keyframes pulse-soft {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
@@ -169,7 +189,8 @@ All colors MUST be HSL.
   }
 
   @keyframes glow {
-    0%, 100% {
+    0%,
+    100% {
       filter: drop-shadow(0 0 20px hsl(var(--primary-glow) / 0.5));
     }
     50% {
@@ -187,7 +208,8 @@ All colors MUST be HSL.
   }
 
   @keyframes bounce-subtle {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {

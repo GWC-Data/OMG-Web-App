@@ -237,7 +237,7 @@ const Index = () => {
             >
               <img
                 src={siteLogo}
-                alt="OM"
+                alt="OMG logo"
                 className="h-10 w-10 animate-pulse-soft"
               />
               <span className="text-2xl font-bold text-gradient-divine">
@@ -528,8 +528,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* <section className="py-24 bg-[#FFF7ED] relative overflow-hidden"> */}
-      <div className="py-28 bg-gradient-to-b from-[#FFF7ED] to-white">
+      {/* Maha Yaagam Section */}
+      <div className="py-28 bg-gradient-to-b from-primary/5 via-background to-background">
         <div className="container mx-auto px-4">
           {/* Heading */}
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -550,15 +550,15 @@ const Index = () => {
             <div
               className="
         relative
-        bg-white/80 backdrop-blur
+        bg-background/80 backdrop-blur
         rounded-3xl
         p-10
-        border border-orange-100
-        shadow-[0_20px_60px_-20px_rgba(0,0,0,0.08)]
+        border border-primary/15
+        shadow-[0_20px_60px_-20px_rgba(15,23,42,0.35)]
         space-y-8
       "
             >
-              <div className="absolute left-0 top-10 h-24 w-1 bg-gradient-to-b from-orange-400 to-orange-200 rounded-full" />
+              <div className="absolute left-0 top-10 h-24 w-1 bg-gradient-to-b from-primary to-secondary rounded-full" />
 
               <DetailRow label="Dates">
                 Feb 15–16, 2026{" "}
@@ -594,11 +594,11 @@ const Index = () => {
             {/* Highlights Card */}
             <div
               className="
-        bg-gradient-to-br from-orange-50 via-white to-white
+        bg-gradient-to-br from-primary/5 via-background to-background
         rounded-3xl
         p-10
-        border border-orange-100
-        shadow-[0_20px_60px_-20px_rgba(0,0,0,0.06)]
+        border border-primary/15
+        shadow-[0_20px_60px_-20px_rgba(15,23,42,0.25)]
       "
             >
               <h3 className="text-2xl font-semibold text-gray-900 mb-8">
@@ -607,7 +607,7 @@ const Index = () => {
 
               <ul className="space-y-6">
                 <li className="flex gap-4 items-start">
-                  <span className="mt-1 w-2 h-2 rounded-full bg-orange-500 shrink-0" />
+                  <span className="mt-1 w-2 h-2 rounded-full bg-secondary shrink-0" />
                   <p className="text-gray-700 leading-relaxed">
                     <strong>25 learned purohits</strong> chanting Rudram
                     <strong> 3,300 times</strong>
@@ -615,7 +615,7 @@ const Index = () => {
                 </li>
 
                 <li className="flex gap-4 items-start">
-                  <span className="mt-1 w-2 h-2 rounded-full bg-orange-500 shrink-0" />
+                  <span className="mt-1 w-2 h-2 rounded-full bg-secondary shrink-0" />
                   <p className="text-gray-700 leading-relaxed">
                     Attempting a <strong>Guinness World Record</strong> for the
                     <strong> Longest Chanting Marathon</strong>
@@ -623,7 +623,7 @@ const Index = () => {
                 </li>
 
                 <li className="flex gap-4 items-start">
-                  <span className="mt-1 w-2 h-2 rounded-full bg-orange-500 shrink-0" />
+                  <span className="mt-1 w-2 h-2 rounded-full bg-secondary shrink-0" />
                   <p className="text-gray-700 leading-relaxed">
                     Performed on the most auspicious night of
                     <strong> Maha Shivaratri</strong>
@@ -926,7 +926,7 @@ const Index = () => {
               <div className="relative p-8 md:p-12 text-center space-y-6">
                 <motion.img
                   src={siteLogo}
-                  alt="Om"
+                  alt="OMG logo"
                   className="w-20 h-20 mx-auto"
                   animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
@@ -994,7 +994,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2 space-y-4">
               <div className="flex items-center gap-3">
-                <img src={siteLogo} alt="OM" className="h-10 w-10" />
+                <img src={siteLogo} alt="OMG logo" className="h-10 w-10" />
                 <span className="text-2xl font-bold text-gradient-divine">
                   OMG
                 </span>

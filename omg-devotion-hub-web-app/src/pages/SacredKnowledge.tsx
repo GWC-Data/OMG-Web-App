@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
-  BookOpen, 
-  Search, 
-  Star, 
-  Clock, 
+import {
+  ArrowLeft,
+  BookOpen,
+  Search,
+  Star,
+  Clock,
   Play,
   ChevronRight,
   Bookmark,
-  Share2
+  Share2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import omSymbol from "@/assets/om-symbol.png";
+// import omSymbol from "@/assets/om-symbol.png";
+import siteLogo from "@/assets/site-logo.png";
 
 const categories = [
   { id: "all", name: "All", icon: "🕉️" },
@@ -34,7 +35,8 @@ const articles = [
     category: "mantras",
     readTime: "5 min",
     image: "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=400",
-    description: "Discover the profound meaning and spiritual benefits of the most powerful Vedic mantra.",
+    description:
+      "Discover the profound meaning and spiritual benefits of the most powerful Vedic mantra.",
     featured: true,
   },
   {
@@ -43,7 +45,8 @@ const articles = [
     category: "vedas",
     readTime: "8 min",
     image: "https://images.unsplash.com/photo-1567591370504-80d5e6168509?w=400",
-    description: "Learn the sacred 108 names of Lord Vishnu and their divine significance.",
+    description:
+      "Learn the sacred 108 names of Lord Vishnu and their divine significance.",
     featured: false,
   },
   {
@@ -52,7 +55,8 @@ const articles = [
     category: "puranas",
     readTime: "12 min",
     image: "https://images.unsplash.com/photo-1518568403628-df55701ade9e?w=400",
-    description: "The epic tale of churning the ocean of milk by Devas and Asuras.",
+    description:
+      "The epic tale of churning the ocean of milk by Devas and Asuras.",
     featured: true,
   },
   {
@@ -61,7 +65,8 @@ const articles = [
     category: "festivals",
     readTime: "10 min",
     image: "https://images.unsplash.com/photo-1577083753695-e010191bacb5?w=400",
-    description: "Understanding the spiritual significance of worshipping nine forms of Goddess Durga.",
+    description:
+      "Understanding the spiritual significance of worshipping nine forms of Goddess Durga.",
     featured: false,
   },
   {
@@ -70,7 +75,8 @@ const articles = [
     category: "mantras",
     readTime: "15 min",
     image: "https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=400",
-    description: "Verse by verse explanation of the powerful Hanuman Chalisa with pronunciation guide.",
+    description:
+      "Verse by verse explanation of the powerful Hanuman Chalisa with pronunciation guide.",
     featured: true,
   },
   {
@@ -79,7 +85,8 @@ const articles = [
     category: "vedas",
     readTime: "20 min",
     image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400",
-    description: "An introduction to Rigveda, Samaveda, Yajurveda, and Atharvaveda.",
+    description:
+      "An introduction to Rigveda, Samaveda, Yajurveda, and Atharvaveda.",
     featured: false,
   },
 ];
@@ -89,8 +96,11 @@ const SacredKnowledge = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredArticles = articles.filter((article) => {
-    const matchesCategory = selectedCategory === "all" || article.category === selectedCategory;
-    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || article.category === selectedCategory;
+    const matchesSearch = article.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -108,8 +118,10 @@ const SacredKnowledge = () => {
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               </Link>
-              <img src={omSymbol} alt="OM" className="h-8 w-8" />
-              <h1 className="text-xl font-bold text-gradient-divine">Sacred Knowledge</h1>
+              <img src={siteLogo} alt="OMG logo" className="h-8 w-8" />
+              <h1 className="text-xl font-bold text-gradient-divine">
+                Sacred Knowledge
+              </h1>
             </div>
             <Button variant="ghost" size="icon">
               <Bookmark className="w-5 h-5" />
@@ -155,10 +167,18 @@ const SacredKnowledge = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3">
                       <Badge variant="secondary" className="mb-2">
-                        {categories.find((c) => c.id === article.category)?.icon}{" "}
-                        {categories.find((c) => c.id === article.category)?.name}
+                        {
+                          categories.find((c) => c.id === article.category)
+                            ?.icon
+                        }{" "}
+                        {
+                          categories.find((c) => c.id === article.category)
+                            ?.name
+                        }
                       </Badge>
-                      <h3 className="font-semibold text-sm line-clamp-2">{article.title}</h3>
+                      <h3 className="font-semibold text-sm line-clamp-2">
+                        {article.title}
+                      </h3>
                     </div>
                   </div>
                 </Card>
@@ -175,7 +195,9 @@ const SacredKnowledge = () => {
             {categories.map((category) => (
               <Button
                 key={category.id}
-                variant={selectedCategory === category.id ? "default" : "outline"}
+                variant={
+                  selectedCategory === category.id ? "default" : "outline"
+                }
                 size="sm"
                 onClick={() => setSelectedCategory(category.id)}
                 className={`shrink-0 ${
@@ -216,7 +238,9 @@ const SacredKnowledge = () => {
                       {categories.find((c) => c.id === article.category)?.icon}{" "}
                       {categories.find((c) => c.id === article.category)?.name}
                     </Badge>
-                    <h3 className="font-semibold mb-1 line-clamp-2">{article.title}</h3>
+                    <h3 className="font-semibold mb-1 line-clamp-2">
+                      {article.title}
+                    </h3>
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
                       {article.description}
                     </p>
@@ -249,10 +273,15 @@ const SacredKnowledge = () => {
               </div>
               <div>
                 <p className="font-semibold text-sm">Daily Shloka</p>
-                <p className="text-xs text-muted-foreground">Start your day with wisdom</p>
+                <p className="text-xs text-muted-foreground">
+                  Start your day with wisdom
+                </p>
               </div>
             </div>
-            <Button size="sm" className="bg-gradient-to-r from-primary to-secondary">
+            <Button
+              size="sm"
+              className="bg-gradient-to-r from-primary to-secondary"
+            >
               Read
             </Button>
           </div>

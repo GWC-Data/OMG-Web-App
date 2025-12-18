@@ -19,7 +19,8 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
-import omSymbol from "@/assets/om-symbol.png";
+// import omSymbol from "@/assets/om-symbol.png";
+import siteLogo from "@/assets/site-logo.png";
 
 const Checkout = () => {
   const { items, totalPrice, clearCart } = useCart();
@@ -83,7 +84,9 @@ const Checkout = () => {
           <div className="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-14 h-14 text-white" />
           </div>
-          <h2 className="text-2xl font-bold mb-2">Order Placed Successfully!</h2>
+          <h2 className="text-2xl font-bold mb-2">
+            Order Placed Successfully!
+          </h2>
           <p className="text-muted-foreground mb-2">
             Thank you for your purchase. Your divine items are being prepared.
           </p>
@@ -115,7 +118,7 @@ const Checkout = () => {
               <ArrowLeft className="w-5 h-5" />
             </Button>
           </Link>
-          <img src={omSymbol} alt="OM" className="h-8 w-8" />
+          <img src={siteLogo} alt="OMG logo" className="h-8 w-8" />
           <h1 className="text-xl font-bold">Checkout</h1>
         </div>
       </header>
@@ -127,16 +130,23 @@ const Checkout = () => {
             <div key={s} className="flex items-center">
               <motion.div
                 animate={{
-                  backgroundColor: step >= s ? "hsl(var(--primary))" : "hsl(var(--muted))",
+                  backgroundColor:
+                    step >= s ? "hsl(var(--primary))" : "hsl(var(--muted))",
                 }}
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                  step >= s ? "text-primary-foreground" : "text-muted-foreground"
+                  step >= s
+                    ? "text-primary-foreground"
+                    : "text-muted-foreground"
                 }`}
               >
                 {s}
               </motion.div>
               {s < 3 && (
-                <div className={`w-12 h-1 mx-2 rounded ${step > s ? "bg-primary" : "bg-muted"}`} />
+                <div
+                  className={`w-12 h-1 mx-2 rounded ${
+                    step > s ? "bg-primary" : "bg-muted"
+                  }`}
+                />
               )}
             </div>
           ))}
@@ -199,7 +209,9 @@ const Checkout = () => {
                     <Button
                       className="w-full mt-6 bg-gradient-to-r from-primary to-secondary"
                       onClick={() => setStep(2)}
-                      disabled={!formData.name || !formData.email || !formData.phone}
+                      disabled={
+                        !formData.name || !formData.email || !formData.phone
+                      }
                     >
                       Continue to Shipping
                     </Button>
@@ -263,7 +275,11 @@ const Checkout = () => {
                       <Button
                         className="flex-1 bg-gradient-to-r from-primary to-secondary"
                         onClick={() => setStep(3)}
-                        disabled={!formData.address || !formData.city || !formData.pincode}
+                        disabled={
+                          !formData.address ||
+                          !formData.city ||
+                          !formData.pincode
+                        }
                       >
                         Continue to Payment
                       </Button>
@@ -287,12 +303,21 @@ const Checkout = () => {
                     <div className="space-y-3">
                       {[
                         { id: "cod", label: "Cash on Delivery", icon: Truck },
-                        { id: "card", label: "Credit/Debit Card", icon: CreditCard },
+                        {
+                          id: "card",
+                          label: "Credit/Debit Card",
+                          icon: CreditCard,
+                        },
                       ].map((method) => (
                         <motion.div
                           key={method.id}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => setFormData({ ...formData, paymentMethod: method.id })}
+                          onClick={() =>
+                            setFormData({
+                              ...formData,
+                              paymentMethod: method.id,
+                            })
+                          }
                           className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
                             formData.paymentMethod === method.id
                               ? "border-primary bg-primary/5"
@@ -321,7 +346,11 @@ const Checkout = () => {
                         {isProcessing ? (
                           <motion.div
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
                             className="w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full"
                           />
                         ) : (
@@ -348,8 +377,12 @@ const Checkout = () => {
                       className="w-14 h-14 object-cover rounded-lg"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium line-clamp-1">{item.name}</p>
-                      <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
+                      <p className="text-sm font-medium line-clamp-1">
+                        {item.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Qty: {item.quantity}
+                      </p>
                       <p className="text-sm font-semibold text-primary">
                         ₹{(item.price * item.quantity).toLocaleString()}
                       </p>
@@ -368,7 +401,9 @@ const Checkout = () => {
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t border-border">
                   <span>Total</span>
-                  <span className="text-gradient-divine">₹{totalPrice.toLocaleString()}</span>
+                  <span className="text-gradient-divine">
+                    ₹{totalPrice.toLocaleString()}
+                  </span>
                 </div>
               </div>
 

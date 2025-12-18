@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { 
-  Search, 
-  ShoppingCart, 
-  ArrowLeft, 
+import {
+  Search,
+  ShoppingCart,
+  ArrowLeft,
   SlidersHorizontal,
-  Sparkles 
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,7 @@ import { CartDrawer } from "@/components/store/CartDrawer";
 import { useCart } from "@/contexts/CartContext";
 import { products, categories } from "@/data/products";
 import omSymbol from "@/assets/om-symbol.png";
+import siteLogo from "@/assets/site-logo.png";
 
 const Store = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -22,8 +23,10 @@ const Store = () => {
   const { totalItems, setIsCartOpen } = useCart();
 
   const filteredProducts = products.filter((product) => {
-    const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    const matchesCategory =
+      selectedCategory === "all" || product.category === selectedCategory;
+    const matchesSearch =
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
@@ -40,8 +43,10 @@ const Store = () => {
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               </Link>
-              <img src={omSymbol} alt="OM" className="h-8 w-8" />
-              <h1 className="text-xl font-bold text-gradient-divine">Divine Store</h1>
+              <img src={siteLogo} alt="OMG logo" className="h-8 w-8" />
+              <h1 className="text-xl font-bold text-gradient-divine">
+                Divine Store
+              </h1>
             </div>
             <Button
               variant="outline"
@@ -93,10 +98,12 @@ const Store = () => {
               <span>Blessed & Verified Products</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-2">
-              Sacred Items for Your <span className="text-gradient-divine">Spiritual Journey</span>
+              Sacred Items for Your{" "}
+              <span className="text-gradient-divine">Spiritual Journey</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Discover authentic spiritual merchandise blessed by renowned pandits
+              Discover authentic spiritual merchandise blessed by renowned
+              pandits
             </p>
           </motion.div>
         </div>
@@ -114,7 +121,9 @@ const Store = () => {
             {categories.map((category) => (
               <motion.div key={category.id} whileTap={{ scale: 0.95 }}>
                 <Button
-                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  variant={
+                    selectedCategory === category.id ? "default" : "outline"
+                  }
                   size="sm"
                   onClick={() => setSelectedCategory(category.id)}
                   className={`shrink-0 ${
@@ -140,14 +149,16 @@ const Store = () => {
               {filteredProducts.length} products found
             </p>
           </div>
-          
+
           {filteredProducts.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                 <Search className="w-12 h-12 text-muted-foreground" />
               </div>
               <h3 className="text-lg font-semibold mb-2">No products found</h3>
-              <p className="text-muted-foreground">Try adjusting your search or filter</p>
+              <p className="text-muted-foreground">
+                Try adjusting your search or filter
+              </p>
             </div>
           ) : (
             <motion.div

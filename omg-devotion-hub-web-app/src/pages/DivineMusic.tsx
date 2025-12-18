@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
-  Play, 
-  Pause, 
-  SkipBack, 
+import {
+  ArrowLeft,
+  Play,
+  Pause,
+  SkipBack,
   SkipForward,
   Heart,
   Shuffle,
@@ -13,21 +13,52 @@ import {
   Volume2,
   ListMusic,
   Search,
-  Clock
+  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
-import omSymbol from "@/assets/om-symbol.png";
+// import omSymbol from "@/assets/om-symbol.png";
+import siteLogo from "@/assets/site-logo.png";
 
 const deities = [
-  { id: "shiva", name: "Lord Shiva", icon: "🔱", color: "from-blue-500 to-purple-600" },
-  { id: "krishna", name: "Lord Krishna", icon: "🦚", color: "from-blue-400 to-cyan-500" },
-  { id: "ganesha", name: "Lord Ganesha", icon: "🕉️", color: "from-orange-400 to-red-500" },
-  { id: "hanuman", name: "Lord Hanuman", icon: "🙏", color: "from-orange-500 to-amber-500" },
-  { id: "lakshmi", name: "Goddess Lakshmi", icon: "🪷", color: "from-pink-400 to-rose-500" },
-  { id: "durga", name: "Goddess Durga", icon: "⚔️", color: "from-red-500 to-orange-500" },
+  {
+    id: "shiva",
+    name: "Lord Shiva",
+    icon: "🔱",
+    color: "from-blue-500 to-purple-600",
+  },
+  {
+    id: "krishna",
+    name: "Lord Krishna",
+    icon: "🦚",
+    color: "from-blue-400 to-cyan-500",
+  },
+  {
+    id: "ganesha",
+    name: "Lord Ganesha",
+    icon: "🕉️",
+    color: "from-orange-400 to-red-500",
+  },
+  {
+    id: "hanuman",
+    name: "Lord Hanuman",
+    icon: "🙏",
+    color: "from-orange-500 to-amber-500",
+  },
+  {
+    id: "lakshmi",
+    name: "Goddess Lakshmi",
+    icon: "🪷",
+    color: "from-pink-400 to-rose-500",
+  },
+  {
+    id: "durga",
+    name: "Goddess Durga",
+    icon: "⚔️",
+    color: "from-red-500 to-orange-500",
+  },
 ];
 
 const playlists = [
@@ -111,8 +142,10 @@ const DivineMusic = () => {
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
               </Link>
-              <img src={omSymbol} alt="OM" className="h-8 w-8" />
-              <h1 className="text-xl font-bold text-gradient-divine">Divine Music</h1>
+              <img src={siteLogo} alt="OMG logo" className="h-8 w-8" />
+              <h1 className="text-xl font-bold text-gradient-divine">
+                Divine Music
+              </h1>
             </div>
             <Button variant="ghost" size="icon">
               <ListMusic className="w-5 h-5" />
@@ -139,7 +172,9 @@ const DivineMusic = () => {
               <motion.button
                 key={deity.id}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedDeity(selectedDeity === deity.id ? null : deity.id)}
+                onClick={() =>
+                  setSelectedDeity(selectedDeity === deity.id ? null : deity.id)
+                }
                 className={`p-4 rounded-2xl text-center transition-all ${
                   selectedDeity === deity.id
                     ? `bg-gradient-to-br ${deity.color} text-white shadow-lg`
@@ -147,7 +182,9 @@ const DivineMusic = () => {
                 }`}
               >
                 <span className="text-3xl block mb-2">{deity.icon}</span>
-                <span className="text-xs font-medium">{deity.name.split(" ")[1]}</span>
+                <span className="text-xs font-medium">
+                  {deity.name.split(" ")[1]}
+                </span>
               </motion.button>
             ))}
           </div>
@@ -182,7 +219,9 @@ const DivineMusic = () => {
                     </motion.button>
                   </div>
                   <div className="p-3">
-                    <p className="font-semibold text-sm truncate">{playlist.name}</p>
+                    <p className="font-semibold text-sm truncate">
+                      {playlist.name}
+                    </p>
                     <p className="text-xs text-muted-foreground">
                       {playlist.tracks} tracks • {playlist.duration}
                     </p>
@@ -211,7 +250,9 @@ const DivineMusic = () => {
                 >
                   <Card
                     className={`p-3 cursor-pointer transition-all ${
-                      isCurrentTrack ? "border-primary bg-primary/5" : "hover:bg-muted/50"
+                      isCurrentTrack
+                        ? "border-primary bg-primary/5"
+                        : "hover:bg-muted/50"
                     }`}
                     onClick={() => {
                       setCurrentTrack(track);
@@ -219,24 +260,40 @@ const DivineMusic = () => {
                     }}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${deity?.color || "from-primary to-secondary"} flex items-center justify-center text-xl`}>
+                      <div
+                        className={`w-12 h-12 rounded-lg bg-gradient-to-br ${
+                          deity?.color || "from-primary to-secondary"
+                        } flex items-center justify-center text-xl`}
+                      >
                         {deity?.icon || "🎵"}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className={`font-semibold text-sm truncate ${isCurrentTrack ? "text-primary" : ""}`}>
+                        <p
+                          className={`font-semibold text-sm truncate ${
+                            isCurrentTrack ? "text-primary" : ""
+                          }`}
+                        >
                           {track.name}
                         </p>
-                        <p className="text-xs text-muted-foreground truncate">{track.artist}</p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {track.artist}
+                        </p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-xs text-muted-foreground">{track.duration}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {track.duration}
+                        </span>
                         {isCurrentTrack && isPlaying && (
                           <div className="flex gap-0.5">
                             {[1, 2, 3].map((i) => (
                               <motion.div
                                 key={i}
                                 animate={{ height: [4, 16, 4] }}
-                                transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.1 }}
+                                transition={{
+                                  duration: 0.5,
+                                  repeat: Infinity,
+                                  delay: i * 0.1,
+                                }}
                                 className="w-1 bg-primary rounded-full"
                               />
                             ))}
@@ -279,12 +336,17 @@ const DivineMusic = () => {
             <div className="flex items-center gap-3 flex-1 min-w-0">
               <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
                 <span className="text-xl">
-                  {deities.find((d) => d.id === currentTrack.deity)?.icon || "🎵"}
+                  {deities.find((d) => d.id === currentTrack.deity)?.icon ||
+                    "🎵"}
                 </span>
               </div>
               <div className="min-w-0">
-                <p className="font-semibold text-sm truncate">{currentTrack.name}</p>
-                <p className="text-xs text-muted-foreground truncate">{currentTrack.artist}</p>
+                <p className="font-semibold text-sm truncate">
+                  {currentTrack.name}
+                </p>
+                <p className="text-xs text-muted-foreground truncate">
+                  {currentTrack.artist}
+                </p>
               </div>
             </div>
 
