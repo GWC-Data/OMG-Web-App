@@ -26,6 +26,7 @@ import {
 import heroImage from "@/assets/hero-ganesha.jpg";
 // import omSymbol from "@/assets/om-symbol.png";
 import siteLogo from "@/assets/site-logo.png";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -340,189 +341,119 @@ const Index = () => {
 
       {/* Hero Section */}
       <section
-        className={`relative ${
-          showNotification ? "pt-32" : "pt-24"
-        } pb-12 md:pt-40 md:pb-20 overflow-hidden transition-all duration-300`}
+        className={`relative min-h-[640px] md:min-h-[720px] md:h-screen flex items-start md:items-center justify-center overflow-hidden transition-all duration-300 ${
+          showNotification ? "pt-24" : "pt-20"
+        } pb-12`}
       >
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-celestial" />
-          <motion.div
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity }}
-            className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-accent/20 to-divine-purple/20 rounded-full blur-3xl"
-          />
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-[#0000008a] backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-radial from-white/10 via-transparent to-transparent pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Content Container */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16"
+            className="flex flex-col items-center space-y-8 mt-6 md:mt-0"
           >
-            <div className="flex-1 text-center lg:text-left space-y-6">
-              <motion.div
-                variants={itemVariants}
-                className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 text-sm text-primary font-medium"
+            {/* Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5 text-xs sm:text-sm text-white font-medium backdrop-blur-md shadow-lg shadow-black/10"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>AI-Powered Spiritual Companion</span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-[2.2rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white drop-shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
+            >
+              Your Divine Journey
+              <motion.span
+                className="block text-gradient-divine mt-2"
+                animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
+                transition={{ duration: 5, repeat: Infinity }}
               >
-                <Sparkles className="w-4 h-4" />
-                <span>AI-Powered Spiritual Companion</span>
-              </motion.div>
+                Begins Here
+              </motion.span>
+            </motion.h1>
 
-              <motion.h1
-                variants={itemVariants}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
+            {/* Subtext */}
+            <motion.p
+              variants={itemVariants}
+              className="text-sm sm:text-base md:text-xl text-slate-100/90 max-w-2xl mx-auto leading-relaxed px-1"
+            >
+              Experience spirituality like never before. Connect with temples,
+              discover sacred rituals, and embark on a personalized devotional
+              journey powered by ancient wisdom and modern AI.
+            </motion.p>
+
+            {/* Buttons - Centered */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full"
+            >
+              <Button
+                size="lg"
+                className="bg-white/90 text-primary hover:bg-white rounded-xl h-12 sm:h-14 px-6 sm:px-8 gap-3 shadow-xl shadow-black/15 w-full sm:w-auto"
               >
-                Your Divine Journey
-                <motion.span
-                  className="block text-gradient-divine"
-                  animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
-                  transition={{ duration: 5, repeat: Infinity }}
-                >
-                  Begins Here
-                </motion.span>
-              </motion.h1>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-lg md:text-xl text-muted-foreground max-w-2xl"
-              >
-                Experience spirituality like never before. Connect with temples,
-                discover sacred rituals, and embark on a personalized devotional
-                journey powered by ancient wisdom and modern AI.
-              </motion.p>
-
-              {/* App Store Buttons */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              >
-                <Button
-                  size="lg"
-                  className="bg-foreground text-background hover:bg-foreground/90 rounded-xl h-14 px-6 gap-3 shadow-xl"
-                >
-                  <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current">
-                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
-                  </svg>
-                  <div className="text-left">
-                    <div className="text-xs opacity-80">Download on the</div>
-                    <div className="text-base font-semibold -mt-0.5">
-                      App Store
-                    </div>
-                  </div>
-                </Button>
-                <Button
-                  size="lg"
-                  className="bg-foreground text-background hover:bg-foreground/90 rounded-xl h-14 px-6 gap-3 shadow-xl"
-                >
-                  <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current">
-                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
-                  </svg>
-                  <div className="text-left">
-                    <div className="text-xs opacity-80">Get it on</div>
-                    <div className="text-base font-semibold -mt-0.5">
-                      Google Play
-                    </div>
-                  </div>
-                </Button>
-              </motion.div>
-
-              {/* Stats */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-wrap items-center gap-6 justify-center lg:justify-start pt-4"
-              >
-                {stats.slice(0, 3).map((stat, i) => (
-                  <div key={i} className="text-center">
-                    <div className="text-2xl md:text-3xl font-bold text-gradient-divine">
-                      {stat.value}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            <motion.div variants={itemVariants} className="flex-1 relative">
-              <motion.div
-                variants={floatingVariants}
-                animate="animate"
-                className="relative"
-              >
-                {/* Phone Mockup */}
-                <div className="relative mx-auto w-72 md:w-80">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent rounded-[3rem] blur-2xl opacity-40" />
-                  <div className="relative bg-gradient-to-br from-foreground to-foreground/90 rounded-[3rem] p-2 shadow-2xl">
-                    <div className="bg-background rounded-[2.5rem] overflow-hidden">
-                      <img
-                        src={heroImage}
-                        alt="Divine Experience"
-                        className="w-full h-[500px] object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent rounded-[2.5rem]" />
-
-                      {/* Floating UI Elements */}
-                      <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="absolute top-20 -right-4 bg-card/95 backdrop-blur-sm rounded-2xl p-3 shadow-xl border border-border"
-                      >
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                            <Bell className="w-4 h-4 text-primary-foreground" />
-                          </div>
-                          <div className="text-xs">
-                            <div className="font-semibold">Pooja Reminder</div>
-                            <div className="text-muted-foreground">
-                              Ganesh Chaturthi at 5PM
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-
-                      <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.7 }}
-                        className="absolute bottom-32 -left-4 bg-card/95 backdrop-blur-sm rounded-2xl p-3 shadow-xl border border-border"
-                      >
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
-                            <MapPin className="w-4 h-4 text-primary-foreground" />
-                          </div>
-                          <div className="text-xs">
-                            <div className="font-semibold">Nearest Temple</div>
-                            <div className="text-muted-foreground">
-                              0.5 km away
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
+                <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current">
+                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+                </svg>
+                <div className="text-left">
+                  <div className="text-xs opacity-80">Download on the</div>
+                  <div className="text-base font-semibold -mt-0.5">
+                    App Store
                   </div>
                 </div>
-              </motion.div>
+              </Button>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 rounded-xl h-12 sm:h-14 px-6 sm:px-8 gap-3 shadow-xl shadow-black/15 w-full sm:w-auto"
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current">
+                  <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
+                </svg>
+                <div className="text-left">
+                  <div className="text-xs opacity-80">Get it on</div>
+                  <div className="text-base font-semibold -mt-0.5">
+                    Google Play
+                  </div>
+                </div>
+              </Button>
+            </motion.div>
 
-              {/* Decorative Elements */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -top-10 -right-10 w-20 h-20 border-2 border-primary/30 rounded-full"
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -bottom-5 -left-5 w-16 h-16 bg-gradient-to-br from-accent/40 to-divine-purple/40 rounded-2xl blur-xl"
-              />
+            {/* Stats - Centered */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-6 sm:pt-8"
+            >
+              {stats.map((stat, i) => (
+                <div
+                  key={i}
+                  className="w-[46%] sm:w-auto text-center px-2 sm:px-4 bg-white/10 border border-white/15 rounded-xl sm:rounded-2xl py-3 sm:py-4 backdrop-blur shadow-lg shadow-black/10"
+                >
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+                    {stat.value}
+                  </div>
+                  <div className="text-[0.7rem] sm:text-xs md:text-sm text-slate-100/80 font-medium leading-snug">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
