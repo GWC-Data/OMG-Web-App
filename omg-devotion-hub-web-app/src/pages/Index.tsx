@@ -35,20 +35,26 @@ const Index = () => {
 
   const notifications = [
     {
-      icon: Bell,
-      text: "🕉️ Today's Auspicious Time: 6:00 AM - 7:30 AM",
+      icon: Calendar,
+      text: "🕉️ Join the Maha Yaagam on the auspicious night of Maha Shivaratri 2026",
       color: "from-primary to-secondary",
+      link: "https://omg-event-launch-site-light.onrender.com",
     },
-    {
-      icon: Star,
-      text: "✨ New: AI-powered Kundali matching now available!",
-      color: "from-secondary to-accent",
-    },
-    {
-      icon: Heart,
-      text: "🙏 Join 50,000+ devotees on their spiritual journey",
-      color: "from-accent to-divine-purple",
-    },
+    // {
+    //   icon: Bell,
+    //   text: "🕉️ Today's Auspicious Time: 6:00 AM - 7:30 AM",
+    //   color: "from-primary to-secondary",
+    // },
+    // {
+    //   icon: Star,
+    //   text: "✨ New: AI-powered Kundali matching now available!",
+    //   color: "from-secondary to-accent",
+    // },
+    // {
+    //   icon: Heart,
+    //   text: "🙏 Join 50,000+ devotees on their spiritual journey",
+    //   color: "from-accent to-divine-purple",
+    // },
   ];
 
   useEffect(() => {
@@ -210,6 +216,15 @@ const Index = () => {
                 >
                   <Bell className="w-4 h-4 animate-pulse" />
                   <span>{notifications[currentNotification].text}</span>
+                  <Link
+                    to={notifications[currentNotification].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="text-primary-foreground/80 text-xs hover:underline hover:text-primary-foreground p-1">
+                      Learn More
+                    </span>
+                  </Link>
                 </motion.div>
                 <button
                   onClick={() => setShowNotification(false)}
