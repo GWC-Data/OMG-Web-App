@@ -23,6 +23,17 @@ import {
   Globe,
   Smartphone,
 } from "lucide-react";
+import {
+  MdBookmarkAdd,
+  MdCelebration,
+  MdGroups,
+  MdLibraryMusic,
+  MdShoppingCart,
+  MdTempleHindu,
+} from "react-icons/md";
+import { PiHeadCircuitFill, PiMedalFill } from "react-icons/pi";
+import { BsStars } from "react-icons/bs";
+import { IoGameController } from "react-icons/io5";
 import heroImage from "@/assets/hero-ganesha.jpg";
 // import omSymbol from "@/assets/om-symbol.png";
 import siteLogo from "@/assets/site-logo.png";
@@ -66,46 +77,71 @@ const Index = () => {
 
   const features = [
     {
-      icon: Store,
-      title: "Divine Store",
-      description:
-        "Sacred items, rudraksha beads, and spiritual merchandise delivered to your doorstep",
-      gradient: "from-primary to-secondary",
-    },
-    {
-      icon: MapPin,
+      icon: MdTempleHindu,
       title: "Temple Locator",
       description:
         "Find nearby temples with routes, timings, and live darshan availability",
-      gradient: "from-secondary to-accent",
+      gradient: "from-primary to-secondary",
     },
     {
-      icon: BookOpen,
-      title: "Sacred Knowledge",
+      icon: MdLibraryMusic,
+      title: "Mantras Library",
       description:
-        "Complete history, mythology, and information about 10,000+ temples",
+        "Explore a vast collection of mantras, hymns, and chants for your deity",
+      gradient: "from-primary to-secondary",
+    },
+    {
+      icon: MdCelebration,
+      title: "Rituals Library",
+      description:
+        "Explore a vast collection of rituals, ceremonies, and customs for your deity",
+      gradient: "from-primary to-secondary",
+    },
+    {
+      icon: MdShoppingCart,
+      title: "Divine Store",
+      description:
+        "Buy sacred items, rudraksha beads, and spiritual merchandise for your deity",
+      gradient: "from-primary to-secondary",
+    },
+    {
+      icon: PiMedalFill,
+      title: "Deities",
+      description: "Recognize your deity with a unique deity recognition badge",
+      gradient: "from-primary to-secondary",
+    },
+    {
+      icon: MdBookmarkAdd,
+      title: "Favourites",
+      description:
+        "Save your favourites mantras, rituals, and deities for quick access",
+      gradient: "from-primary to-secondary",
+    },
+    {
+      icon: MdGroups,
+      title: "Community",
+      description: "Connect with other devotees and share your experiences",
+      gradient: "from-primary to-secondary",
+    },
+    {
+      icon: PiHeadCircuitFill,
+      title: "AI Assistant",
+      description:
+        "Get instant answers to your questions and guidance on your spiritual journey",
+      gradient: "from-primary to-secondary",
+    },
+    {
+      icon: BsStars,
+      title: "Pooja Planner",
+      description:
+        "Plan your pooja rituals based on your birth chart and planetary positions",
       gradient: "from-accent to-divine-crimson",
     },
     {
-      icon: Calendar,
-      title: "Personalized Pooja",
-      description:
-        "AI-recommended rituals based on your birth chart and planetary positions",
+      icon: IoGameController,
+      title: "Zen Slayer",
+      description: "A relaxing game to help you meditate and relax",
       gradient: "from-primary to-divine-purple",
-    },
-    {
-      icon: Music,
-      title: "Divine Music",
-      description:
-        "Curated devotional songs, mantras, and meditation sounds for your deity",
-      gradient: "from-divine-orange to-primary",
-    },
-    {
-      icon: MessageCircle,
-      title: "AI Spiritual Guide",
-      description:
-        "24/7 guidance on rituals, mantras, and spiritual queries in your language",
-      gradient: "from-divine-purple to-accent",
     },
   ];
 
