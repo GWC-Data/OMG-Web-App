@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -12,6 +12,7 @@ import {
   Heart,
   Sparkles,
   ChevronLeft,
+  
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,6 +27,7 @@ import {
 } from "@/components/ui/select";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import PhoneAuth from "@/components/auth/PhoneAuth";
 // import omSymbol from "@/assets/om-symbol.png";
 import siteLogo from "@/assets/site-logo.png";
 
@@ -45,9 +47,9 @@ const Auth = () => {
 
   // Form data
   const [phone, setPhone] = useState("");
+  const [userId, setUserId] = useState<string>("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [otp, setOtp] = useState("");
   const [fullName, setFullName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [gender, setGender] = useState<"male" | "female" | "other">("male");
@@ -71,21 +73,20 @@ const Auth = () => {
     }
   };
 
+  const handlePhoneVerified = (phoneNumber: string, verifiedUserId: string) => {
+    setPhone(phoneNumber);
+    setUserId(verifiedUserId);
+    setStep("profile");
+  };
+
   const handleCredentialsSubmit = () => {
-    if (authMethod === "phone" && !phone) {
-      toast({
-        title: "Please enter your phone number",
-        variant: "destructive",
-      });
-      return;
-    }
     if (authMethod === "email" && (!email || !password)) {
       toast({ title: "Please fill all fields", variant: "destructive" });
       return;
     }
-
+    // Phone auth is handled by PhoneAuth component, so this only applies to email
     if (isLogin) {
-      // Simulate login
+      // Simulate login for email
       login({
         id: "1",
         phone: phone || undefined,
@@ -111,7 +112,7 @@ const Auth = () => {
     }
 
     login({
-      id: "1",
+      id: userId || "1",
       phone: phone || undefined,
       email: email || undefined,
       fullName,
@@ -159,17 +160,24 @@ const Auth = () => {
               <ChevronLeft className="w-5 h-5" />
             </Button>
           )}
-          <motion.img
-            src={siteLogo}
-            alt="OMG logo"
-            className="h-12 w-12"
-            animate={{ rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-          <div className="ml-3">
-            <h1 className="text-2xl font-bold text-gradient-divine">OMG</h1>
-            <p className="text-xs text-muted-foreground">Oh My God</p>
-          </div>
+         
+          
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary rounded">
+          <>
+            <motion.img
+              src={siteLogo}
+              alt="OMG logo"
+              className="h-12 w-12"
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+            <div className="ml-3">
+              <h1 className="text-2xl font-bold text-gradient-divine">OMG</h1>
+              <p className="text-xs text-muted-foreground">Oh My God</p>
+            </div>
+            </>
+          </Link>
+          
         </div>
 
         <AnimatePresence mode="wait">
@@ -293,36 +301,7 @@ const Auth = () => {
 
               <div className="space-y-4">
                 {authMethod === "phone" ? (
-                  <>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="+91 98765 43210"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className="pl-10 h-12"
-                        />
-                      </div>
-                    </div>
-                    {!isLogin && (
-                      <div className="space-y-2">
-                        <Label htmlFor="otp">OTP</Label>
-                        <Input
-                          id="otp"
-                          type="text"
-                          placeholder="Enter 6-digit OTP"
-                          value={otp}
-                          onChange={(e) => setOtp(e.target.value)}
-                          className="h-12 text-center tracking-widest"
-                          maxLength={6}
-                        />
-                      </div>
-                    )}
-                  </>
+                  <PhoneAuth onVerified={handlePhoneVerified} />
                 ) : (
                   <>
                     <div className="space-y-2">
@@ -367,25 +346,29 @@ const Auth = () => {
                 )}
               </div>
 
-              <Button
-                onClick={handleCredentialsSubmit}
-                className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-              >
-                {isLogin ? "Sign In" : "Continue"}
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              {authMethod === "email" && (
+                <>
+                  <Button
+                    onClick={handleCredentialsSubmit}
+                    className="w-full h-12 bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                  >
+                    {isLogin ? "Sign In" : "Continue"}
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
 
-              <p className="text-center text-sm">
-                {isLogin
-                  ? "Don't have an account?"
-                  : "Already have an account?"}{" "}
-                <button
-                  onClick={() => setIsLogin(!isLogin)}
-                  className="text-primary font-semibold hover:underline"
-                >
-                  {isLogin ? "Sign Up" : "Sign In"}
-                </button>
-              </p>
+                  <p className="text-center text-sm">
+                    {isLogin
+                      ? "Don't have an account?"
+                      : "Already have an account?"}{" "}
+                    <button
+                      onClick={() => setIsLogin(!isLogin)}
+                      className="text-primary font-semibold hover:underline"
+                    >
+                      {isLogin ? "Sign Up" : "Sign In"}
+                    </button>
+                  </p>
+                </>
+              )}
             </motion.div>
           )}
 
@@ -476,7 +459,9 @@ const Auth = () => {
                   <Label htmlFor="marital">Marital Status</Label>
                   <Select
                     value={maritalStatus}
-                    onValueChange={(value: any) => setMaritalStatus(value)}
+                    onValueChange={(value: "single" | "married" | "divorced" | "widowed") =>
+                      setMaritalStatus(value)
+                    }
                   >
                     <SelectTrigger className="h-12">
                       <Heart className="w-5 h-5 mr-2 text-muted-foreground" />

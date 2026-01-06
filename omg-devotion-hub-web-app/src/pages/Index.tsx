@@ -22,6 +22,7 @@ import {
   Users,
   Globe,
   Smartphone,
+  User,
 } from "lucide-react";
 import {
   MdBookmarkAdd,
@@ -38,11 +39,23 @@ import heroImage from "@/assets/hero-ganesha.jpg";
 // import omSymbol from "@/assets/om-symbol.png";
 import siteLogo from "@/assets/site-logo.png";
 import heroVideo from "@/assets/hero-video.mp4";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentNotification, setCurrentNotification] = useState(0);
   const [showNotification, setShowNotification] = useState(true);
+  const { user, isAuthenticated, logout } = useAuth();
 
   const notifications = [
     {
@@ -334,9 +347,107 @@ const Index = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity shadow-lg">
-                  Download App
-                </Button>
+                {!isAuthenticated ? (
+                  <Link to="/auth">
+                    <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity shadow-lg">
+                      Sign in
+                    </Button>
+                  </Link>
+                ) : (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="flex items-center gap-3 px-3 py-1.5 rounded-full border border-border bg-background/80 hover:bg-muted transition-colors shadow-sm">
+                        <Avatar className="h-8 w-8">
+                          {user?.avatar && (
+                            <AvatarImage src={user.avatar} alt={user.fullName} />
+                          )}
+                          <AvatarFallback>
+                            {user?.fullName
+                              ?.split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .toUpperCase() || <User className="h-4 w-4" />}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="flex flex-col items-start">
+                          <span className="text-sm font-medium leading-tight">
+                            {user?.fullName || "Profile"}
+                          </span>
+                          {(user?.email || user?.phone) && (
+                            <span className="text-xs text-muted-foreground">
+                              {user.email || user.phone}
+                            </span>
+                          )}
+                        </div>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-64 mr-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Avatar className="h-10 w-10">
+                          {user?.avatar && (
+                            <AvatarImage src={user.avatar} alt={user.fullName} />
+                          )}
+                          <AvatarFallback>
+                            {user?.fullName
+                              ?.split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .toUpperCase() || <User className="h-4 w-4" />}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="text-sm font-semibold">
+                            {user?.fullName || "Devotee"}
+                          </p>
+                          {(user?.email || user?.phone) && (
+                            <p className="text-xs text-muted-foreground">
+                              {user.email || user.phone}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="space-y-1 mb-3 text-xs text-muted-foreground">
+                        {user?.dateOfBirth && (
+                          <p>
+                            <span className="font-medium text-foreground">
+                              DOB:
+                            </span>{" "}
+                            {user.dateOfBirth}
+                          </p>
+                        )}
+                        {user?.gender && (
+                          <p>
+                            <span className="font-medium text-foreground">
+                              Gender:
+                            </span>{" "}
+                            {user.gender}
+                          </p>
+                        )}
+                        {user?.maritalStatus && (
+                          <p>
+                            <span className="font-medium text-foreground">
+                              Marital status:
+                            </span>{" "}
+                            {user.maritalStatus}
+                          </p>
+                        )}
+                      </div>
+                      <div className="flex justify-between items-center gap-2 pt-2 border-t border-border/60">
+                        <Link to="/profile" className="text-xs text-primary hover:underline">
+                          View full profile
+                        </Link>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-7 text-xs px-3"
+                          onClick={logout}
+                        >
+                          Log out
+                        </Button>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                )}
               </motion.div>
             </div>
 
@@ -381,9 +492,107 @@ const Index = () => {
                     </Button>
                   )
                 )}
-                <Button className="w-full bg-gradient-to-r from-primary to-secondary">
-                  Download App
-                </Button>
+                {!isAuthenticated ? (
+                  <Link to="/auth">
+                    <Button className="w-full bg-gradient-to-r from-primary to-secondary mt-2">
+                      Sign in
+                    </Button>
+                  </Link>
+                ) : (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl border border-border bg-background/80 hover:bg-muted transition-colors shadow-sm mt-2">
+                        <Avatar className="h-8 w-8">
+                          {user?.avatar && (
+                            <AvatarImage src={user.avatar} alt={user.fullName} />
+                          )}
+                          <AvatarFallback>
+                            {user?.fullName
+                              ?.split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .toUpperCase() || <User className="h-4 w-4" />}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="flex flex-col items-start">
+                          <span className="text-sm font-medium leading-tight">
+                            {user?.fullName || "Profile"}
+                          </span>
+                          {(user?.email || user?.phone) && (
+                            <span className="text-xs text-muted-foreground">
+                              {user.email || user.phone}
+                            </span>
+                          )}
+                        </div>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-64 mx-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Avatar className="h-10 w-10">
+                          {user?.avatar && (
+                            <AvatarImage src={user.avatar} alt={user.fullName} />
+                          )}
+                          <AvatarFallback>
+                            {user?.fullName
+                              ?.split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .toUpperCase() || <User className="h-4 w-4" />}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="text-sm font-semibold">
+                            {user?.fullName || "Devotee"}
+                          </p>
+                          {(user?.email || user?.phone) && (
+                            <p className="text-xs text-muted-foreground">
+                              {user.email || user.phone}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="space-y-1 mb-3 text-xs text-muted-foreground">
+                        {user?.dateOfBirth && (
+                          <p>
+                            <span className="font-medium text-foreground">
+                              DOB:
+                            </span>{" "}
+                            {user.dateOfBirth}
+                          </p>
+                        )}
+                        {user?.gender && (
+                          <p>
+                            <span className="font-medium text-foreground">
+                              Gender:
+                            </span>{" "}
+                            {user.gender}
+                          </p>
+                        )}
+                        {user?.maritalStatus && (
+                          <p>
+                            <span className="font-medium text-foreground">
+                              Marital status:
+                            </span>{" "}
+                            {user.maritalStatus}
+                          </p>
+                        )}
+                      </div>
+                      <div className="flex justify-between items-center gap-2 pt-2 border-t border-border/60">
+                        <Link to="/profile" className="text-xs text-primary hover:underline">
+                          View full profile
+                        </Link>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-7 text-xs px-3"
+                          onClick={logout}
+                        >
+                          Log out
+                        </Button>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                )}
               </div>
             </motion.div>
           )}
