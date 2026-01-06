@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { CartProvider } from "./contexts/CartContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import { GlobalCalls } from "@/utils/globalCalls";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Store from "./pages/Store";
@@ -28,6 +29,7 @@ const App = () => (
           <TooltipProvider>
             <Toaster />
             <Sonner />
+            <GlobalCalls />
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
