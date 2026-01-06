@@ -725,7 +725,7 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -738,16 +738,16 @@ const Index = () => {
                   <div className="p-6 space-y-4 relative z-10">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: -5 }}
-                      className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg`}
+                      className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg`}
                     >
-                      <feature.icon className="w-7 h-7 text-primary-foreground" />
+                      <feature.icon className="w-5 h-5 text-primary-foreground" />
                     </motion.div>
 
                     <div className="space-y-2">
-                      <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         {feature.description}
                       </p>
                     </div>
